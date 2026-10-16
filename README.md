@@ -6,8 +6,10 @@ BlastRadius parses a Python repo into a code graph in **FalkorDB** and
 answers impact questions with real Cypher queries: multi-hop blast
 radius, shortest dependency chains, and degree-centrality hot spots.
 A local open-weight model (**Gemma** via Ollama) then turns the graph
-facts into a readable change summary — grounded in the query results,
-never invented.
+facts into a readable change summary, grounded in the query results.
+The graph results are authoritative; the summary is a draft — small
+local models (1B) can still garble details, so verify before acting.
+Use `gemma3:4b` for better fidelity.
 
 Built Oct 16–17, 2026 for a dual submission:
 

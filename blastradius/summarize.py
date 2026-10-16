@@ -3,7 +3,9 @@
 The model is load-bearing but NOT authoritative: the prompt is grounded
 in the graph results (affected functions, files, tests, hot spots) and
 the model is told to discuss only those. It turns graph facts into a
-readable summary; it never invents the impact set.
+readable summary. The graph results are the authority; the summary is a
+draft — small models (1B) can still garble details, so verify before
+acting. Use gemma3:4b for better fidelity.
 """
 
 from __future__ import annotations
@@ -42,6 +44,8 @@ Write a short, concrete summary with exactly these sections:
 1. What could break and why (refer to the callers above by name)
 2. Suggested tests to run / add (only the test files above, or new tests for the callers)
 3. Risk: Low / Medium / High, with one sentence of justification
+
+CRITICAL: Every file name you mention MUST appear in the facts above. Never invent a file name. In particular, if the only test file listed above is `tests/test_cart.py`, do not mention any other test file.
 
 Keep it under 250 words. If no callers were found, say the function appears unused and the risk is Low.
 """
