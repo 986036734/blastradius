@@ -140,6 +140,21 @@ python -m unittest discover -s tests -v
 The three `TestFalkorGraph` integration tests run only when a FalkorDB
 server is reachable on `localhost:6380`; otherwise they skip.
 
+## Demo video
+
+[Demo video](https://github.com/986036734/blastradius/releases/download/v1.0.0/blastradius-demo.mp4) — the scripted demo on the bundled sample-app: parse, impact analysis of `send_email`, and a Gemma-written change summary.
+
+## AI disclosure
+
+This project was built with **Muse** (Meta's AI coding assistant) and
+delegated AI subagents, under the direction of the human author (Steve),
+who designed the tool, set the requirements, and verified the work.
+Every functional claim was verified by running the real test suite
+(15/15) and the live demo against a real FalkorDB instance and a
+locally running Gemma model. The human author reviewed the docs and
+corrected overstrong claims found during testing (e.g. the 1B model's
+occasional invented filenames are disclosed, not hidden).
+
 ## License
 
 MIT.
