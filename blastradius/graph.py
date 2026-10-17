@@ -39,7 +39,14 @@ class FalkorGraph:
         self.graph = self.db.select_graph(graph)
 
     def clear(self) -> None:
-        self.graph.delete()
+        # GRAPH.DELETE on a nonexistent/empty graph raises
+        # "Invalid graph operation on empty key" — a fresh database
+        # has nothing to delete, which is not an error.
+        try:
+            self.graph.delete()
+        except Exception as exc:  # noqa: BLE001 - redis ResponseError
+            if "empty key" not in str(exc):
+                raise
 
     def load(self, repo: RepoGraph) -> tuple[int, int]:
         """MERGE all parsed nodes/edges into FalkorDB. Returns (nodes, edges)."""

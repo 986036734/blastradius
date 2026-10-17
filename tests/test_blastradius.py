@@ -190,6 +190,16 @@ class TestFalkorGraph(unittest.TestCase):
             ["test_checkout", "checkout", "send_receipt", "send_email"],
         )
 
+    def test_clear_on_empty_graph_does_not_raise(self):
+        # Regression: GRAPH.DELETE on a nonexistent graph raised
+        # "Invalid graph operation on empty key" and crashed the demo
+        # on a fresh database.
+        from blastradius.graph import FalkorGraph
+
+        empty = FalkorGraph(graph="blastradius_test_empty")
+        empty.clear()  # must not raise
+        empty.clear()  # still empty — must not raise either
+
 
 if __name__ == "__main__":
     unittest.main()
